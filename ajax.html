@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form" action="/xxx" method="GET">
+        <div>
+            <label>
+        账号 :
+        <input type="text" name="yyy" value="1">
+      </label>
+        </div>
+        <div>
+            <label>
+        密码 :
+        <input type="password" name="zzz" value="2">
+      </label>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    <p></p>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            let yyy = form.yyy.value
+            let zzz = form.zzz.value
+            let request = new XMLHttpRequest()
+            request.open('GET', `/xxx?yyy=${yyy}&zzz=${zzz}`)
+            request.send()
+            //回调函数   
+            request.onreadystatechange = zswFun;
+            function zswFun() {
+                if (request.readyState == 4 && request.status == 200) {
+                    var b = request.responseText;
+                    $("p").html(b);
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
